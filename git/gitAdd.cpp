@@ -97,7 +97,7 @@ bool AddFileToIndex(std::string fileName, std::vector<unsigned int> hash)
 
 AddErrorCode Add(std::string filePath)
 {
-		// check if is git folder
+	// check if is git folder
 	if (!GitUtils::isValidGitFolder())
 	{
 		return AddErrorCode::InvalidGitFolder;
@@ -148,20 +148,4 @@ AddErrorCode Add(std::string filePath)
 	AddFileToIndex(filePath, hash);
 
 	return AddErrorCode::NoError;
-}
-
-void test1()
-{
-	namespace fs = boost::filesystem;
-
-	auto currentPath = boost::filesystem::current_path();
-
-	fs::directory_iterator itt(currentPath);
-
-	for (; itt != fs::directory_iterator(); ++itt)
-	{
-		auto path = itt->path();
-		auto test1 = path.filename().string();
-		auto test2 = path.stem().string();
-	}
 }
